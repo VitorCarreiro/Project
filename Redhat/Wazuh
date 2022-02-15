@@ -4,7 +4,7 @@ Instance type:
 t2.medium
 IP: 172.31.1.102
 
-#First config your netplan so you can have net.
+#First config your netplan.
 
 You can see how to do it here -> https://github.com/VitorCarreiro/AWS_NAT_IPTABLES_Ubuntu_Redhat
 
