@@ -1,5 +1,9 @@
 # Remote Client
 
+IP:172.31.34.68
+
+Elastic IP: 44.237.247.80
+
 **Update and upgrade**
 
 `apt update && apt upgrade -y`
