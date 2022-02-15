@@ -1,8 +1,10 @@
 # www
 
-**Instance type:
-t2.micro
-IP: 172.31.2.101**
+**Instance type:**
+
+**t2.micro**
+
+**IP: 172.31.2.101**
 
 **First config your netplan**
 
@@ -12,7 +14,7 @@ IP: 172.31.2.101**
 
 `yum update -y`
 
-**Install Apache**
+# Install Apache
 
 `yum install httpd`
 
@@ -56,3 +58,44 @@ IP: 172.31.2.101**
 
 **systemctl restart httpd**
 
+# ProFTPd Config
+
+**You need to install the epel package to be able to install proftpd** `yum install epel-release`
+
+**Install proftpd**
+
+`yum install proftpd`
+
+**Go to the config file**
+
+`nano /etc/proftpd.conf`
+
+**Create certificates and change to like this**
+```
+/etc/ssl/certs/ftp.enta.pt.crt
+/etc/ssl/private/ftp.enta.pt.key
+```
+**Add the ports you want to use for your passive ftp, you can place it on the last line**
+
+`PassivePorts 10000 10100`
+
+**Comment these lines**
+```
+     # <IfDefine TLS>
+     #  <IfModule mod_tls_shmcache.c>
+     #    TLSSessionCache            shm:/file=/var/run/proftpd/sesscache
+     #  </IfModule>
+     #</IfDefine>
+```
+**Change your cert and key to where you placed them**
+```
+TLSRSACertificateFile         /etc/ssl/certs/ftp.enta.pt.crt
+TLSRSACertificateKeyFile      /etc/ssl/private/ftp.enta.pt.key
+```
+**Create a user if you need to or just use ec2-user**
+
+`adduser client`
+
+**Now that everything is ready start the server**
+
+`systemctl enable --now proftpd`
