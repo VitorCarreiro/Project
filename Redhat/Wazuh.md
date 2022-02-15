@@ -1,8 +1,10 @@
 # Wazuh 
 
-**Instance type:
-t2.medium
-IP: 172.31.1.102**
+**Instance type:**
+
+**t2.medium**
+
+**IP: 172.31.1.102**
 
 **First config your netplan**
 
