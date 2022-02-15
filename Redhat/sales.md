@@ -14,7 +14,7 @@
 
 `yum update -y`
 
-# RDP Config
+## RDP Config
 
 **Install the epel package**
 
@@ -44,7 +44,8 @@
 
 `sudo bash -c 'echo PREFERRED=/usr/bin/mate-session > /etc/sysconfig/desktop'`
 
-# NFS Client
+
+## NFS Client
 
 **Install NFS**
 
