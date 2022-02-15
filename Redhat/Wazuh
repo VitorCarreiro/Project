@@ -1,1 +1,28 @@
 # Wazuh 
+
+Instance type:
+t2.medium
+IP: 172.31.1.102
+
+#First config your netplan so you can have net.
+
+You can see how to do it here -> https://github.com/VitorCarreiro/AWS_NAT_IPTABLES_Ubuntu_Redhat
+
+#Update the machine;
+
+yum update -y
+
+#To install wazuh you should go to this page since every step to follow is there
+
+-> https://documentation.wazuh.com/current/installation-guide/open-distro/all-in-one-deployment/all-in-one.html
+
+#Create the partition for your disks with gdisk
+
+gdisk /dev/xvdf
+gdisk /dev/xvdg
+gdisk /dev/xvdh
+gdisk /dev/xvdi
+
+#Now create a RAID 6 array
+
+mdadm --create /dev/md0 --level 6 --raid-devices 4 /dev/xvdf1 /dev/xvdg1 /dev/xvdh1 /dev/xvdi1
