@@ -1,5 +1,13 @@
 # Control
 
+t2.small
+
+IP: 172.31.0.100
+    172.31.1.100
+    172.31.2.100
+
+Elastic IP: 44.240.33.218
+
 ## NAT
 
 **For NAT click on your server go to Actions-Networking-Change source/destination check and press the stop square**
