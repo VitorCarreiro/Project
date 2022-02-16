@@ -132,13 +132,62 @@ adduser lemos
 adduser joao
 adduser vin
 ```
-Go to cd /home and type this
+**Go to cd /home and type this**
 
 `dpkg-reconfigure postfix`
 
-cd ubuntu/
+**cd ubuntu/**
 
 `maildirmake.dovecot Maildir`
 
-cd /etc/postfix/
+**cd /etc/postfix/**
+
+`nano main.cf`
+
+**Place at the end**
+
+`home_mailbox = Maildir/`
+
+**Go to nano /etc/postfix/sasl/smtpd.conf**
+ 
+**Place this inside **
+```
+pwcheck_method: saslauthd
+mech_list: PLAIN LOGIN
+```
+**To place security go to nano /etc/postfix/master.cf**
+```
+#uncomment
+submission inet n       -       y       -       -       smtpd
+-o syslog_name=postfix/submission
+-o smtpd_tls_security_level=encrypt
+-o smtpd_sasl_auth_enable=yes
+#Add below -o smtpd_sasl
+-o smtpd_client_restrictions=permit_sasl_authenticated,reject
+
+#uncomment
+smtps     inet  n       -       y       -       -       smtpd
+-o syslog_name=postfix/smtps
+-o smtpd_tls_wrappermode=yes
+-o smtpd_sasl_auth_enable=yes
+#Add below -o smtpd_sasl
+-o smtpd_client_restrictions=permit_sasl_authenticated,reject
+```
+**Adduser to sasl**
+```
+adduser postfix sasl
+adduser dovecot sasl
+systemctl restart dovecot
+systemctl restart postfix
+```
+**Go to nano main.cf and change certificates**
+
+**Restart the services**
+```
+systemctl restart dovecot
+systemctl restart postfix
+systemctl start saslauthd
+```
+
+
 
